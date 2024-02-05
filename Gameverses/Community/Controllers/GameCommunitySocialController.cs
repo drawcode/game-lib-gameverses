@@ -7,6 +7,8 @@ using System.IO;
 using Engine.Events;
 using Engine.Networking;
 using UnityEngine.Networking;
+using Engine.Game.App.BaseApp;
+using Engine.Game.App;
 
 #if SOCIAL_USE_TWITTER_PRIME31 || SOCIAL_USE_FACEBOOK_PRIME31
 using Prime31;
