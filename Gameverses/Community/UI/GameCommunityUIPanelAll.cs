@@ -7,6 +7,7 @@ using UnityEngine;
 using Engine.Events;
 using Engine.Networking;
 using UnityEngine.UI;
+using Engine.Game.App;
 
 public class GameCommunityUIPanelAll : UIAppPanelBaseList {
 
