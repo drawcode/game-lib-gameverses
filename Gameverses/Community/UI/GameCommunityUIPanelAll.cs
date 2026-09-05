@@ -66,8 +66,6 @@ public class GameCommunityUIPanelAll : UIAppPanelBaseList {
 
         base.OnEnable();
 
-        Messenger<string>.AddListener(ButtonEvents.EVENT_BUTTON_CLICK, OnButtonClickEventHandler);
-
         Messenger.AddListener(
             GameCommunityMessages.gameCommunityReady,
             OnGameCommunityReady);
@@ -86,8 +84,6 @@ public class GameCommunityUIPanelAll : UIAppPanelBaseList {
     public override void OnDisable() {
 
         base.OnDisable();
-
-        Messenger<string>.RemoveListener(ButtonEvents.EVENT_BUTTON_CLICK, OnButtonClickEventHandler);
 
         Messenger.RemoveListener(
             GameCommunityMessages.gameCommunityReady,
