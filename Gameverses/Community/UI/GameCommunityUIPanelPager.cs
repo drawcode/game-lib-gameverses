@@ -20,7 +20,9 @@ public class GameCommunityUIPanelPager : UIAppPanelBaseList {
 #if USE_UI_NGUI_2_7 || USE_UI_NGUI_3
     public UIImageButton buttonNext;
 #else
-    public GameObject buttonNext;
+    // B10: agnostic UIRef handles. No prefab or scene object carries this panel in this title,
+    // so this is the code path only (UIUtil UIRef overloads), with no view to bind.
+    public Engine.UI.UIRef buttonNext;
 #endif
 
     // previous
@@ -28,7 +30,8 @@ public class GameCommunityUIPanelPager : UIAppPanelBaseList {
 #if USE_UI_NGUI_2_7 || USE_UI_NGUI_3
     public UIImageButton buttonPrevious;
 #else
-    public GameObject buttonPrevious;
+    // B10: UIRef, code path only (see above).
+    public Engine.UI.UIRef buttonPrevious;
 #endif
 
     // logged
@@ -37,8 +40,9 @@ public class GameCommunityUIPanelPager : UIAppPanelBaseList {
     public UILabel labelInfo;
     public UILabel labelInfoMore;
 #else
-    public GameObject labelInfo;
-    public GameObject labelInfoMore;
+    // B10: UIRef, code path only (see above).
+    public Engine.UI.UIRef labelInfo;
+    public Engine.UI.UIRef labelInfoMore;
 #endif
     public int currentPage = 1;
     public int currentPageSize = 25;
