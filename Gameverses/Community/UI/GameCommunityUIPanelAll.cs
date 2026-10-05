@@ -6,7 +6,6 @@ using UnityEngine;
 // using Engine.Data.Json;
 using Engine.Events;
 using Engine.Networking;
-using UnityEngine.UI;
 using Engine.Game.App;
 
 public class GameCommunityUIPanelAll : UIAppPanelBaseList {
@@ -30,12 +29,14 @@ public class GameCommunityUIPanelAll : UIAppPanelBaseList {
     public UIImageButton buttonOnline;
     public UIImageButton buttonClose;
 #else
-    public GameObject labelTitle;
-    public GameObject buttonFull;
-    public GameObject buttonFriends;
-    public GameObject buttonStats;
-    public GameObject buttonOnline;
-    public GameObject buttonClose;
+    // B10: agnostic UIRef handles. No prefab or scene object carries this panel in this title,
+    // so this is the code path only (UIUtil UIRef overloads), with no view to bind.
+    public Engine.UI.UIRef labelTitle;
+    public Engine.UI.UIRef buttonFull;
+    public Engine.UI.UIRef buttonFriends;
+    public Engine.UI.UIRef buttonStats;
+    public Engine.UI.UIRef buttonOnline;
+    public Engine.UI.UIRef buttonClose;
 #endif
     public LeaderboardFilterType leaderboardType = LeaderboardFilterType.FULL;
     public static GameCommunityUIPanelAll Instance;
@@ -66,8 +67,6 @@ public class GameCommunityUIPanelAll : UIAppPanelBaseList {
 
         base.OnEnable();
 
-        Messenger<string>.AddListener(ButtonEvents.EVENT_BUTTON_CLICK, OnButtonClickEventHandler);
-
         Messenger.AddListener(
             GameCommunityMessages.gameCommunityReady,
             OnGameCommunityReady);
@@ -86,8 +85,6 @@ public class GameCommunityUIPanelAll : UIAppPanelBaseList {
     public override void OnDisable() {
 
         base.OnDisable();
-
-        Messenger<string>.RemoveListener(ButtonEvents.EVENT_BUTTON_CLICK, OnButtonClickEventHandler);
 
         Messenger.RemoveListener(
             GameCommunityMessages.gameCommunityReady,

@@ -18,9 +18,11 @@ public class GameCommunityUIPanelLoading : UIAppPanelBaseList {
     public UILabel labelStatus;
     public UIImageButton buttonCloseLoading;
 #else
-    public GameObject labelTitle;
-    public GameObject labelStatus;
-    public GameObject buttonCloseLoading;
+    // B10: agnostic UIRef handles. No prefab or scene object carries this panel in this title,
+    // so this is the code path only (UIUtil UIRef overloads), with no view to bind.
+    public Engine.UI.UIRef labelTitle;
+    public Engine.UI.UIRef labelStatus;
+    public Engine.UI.UIRef buttonCloseLoading;
 #endif
 
     public override void Awake() {

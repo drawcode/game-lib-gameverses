@@ -17,7 +17,9 @@ public class GameCommunityUIPanelAchievements : UIAppPanelBaseList {
 #if USE_UI_NGUI_2_7 || USE_UI_NGUI_3
     public UILabel labelPoints;
 #else
-    public GameObject labelPoints;
+    // B10: agnostic UIRef handles. No prefab or scene object carries this panel in this title,
+    // so this is the code path only (UIUtil UIRef overloads), with no view to bind.
+    public Engine.UI.UIRef labelPoints;
 #endif
 
     public override void Awake() {

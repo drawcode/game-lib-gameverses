@@ -19,6 +19,6 @@ metadata:
 - `GameMessenger.cs` — messaging.
 - `GameversesService.cs`, `GameversesGameAPI.cs`, `GameversesTypes.cs`, `GameversesGameObject.cs` — backend service API.
 - **Community/** — social/community features.
-- **Sync/** — state synchronization.
+- **Sync/** — cloud save/sync. `GameSync.cs` is currently the **only real cloud-save backend** in the project: it takes the keyed profile-JSON file set staged by engine `BaseGameState.save(...,setSync:true)` (`GameSyncObject.files` = `GameSyncFileObject{code,path,content,hash,data_type}`, `GameSyncType {upload,upload_delta,download,download_delta}` — delta scaffolded) and POSTs it to the Gameverses REST endpoint `{GameversesConfig.apiPath}sync/profile/` (gated on `AppConfigs.gameCloudSyncEnabled`/`gameCloudSyncKey`). Functional-but-stubbed: the upload path posts, but the download-merge/success handlers (`OnWWWRequestItemSuccess`, `HandleActionSyncProfile`, `OnGameSync*`) are empty. iCloud + Google Play Games Saved Games do **not** exist yet — the plan is to refactor this into one pluggable seam with native backends. Full spec: [[context-cloud-save-sync]] (shared, workspace level).
 
 Consumed by the app's `GameMatchup`/`GameSocialGame` (`Assets/Code/Game/Game/Networking/`) and gated by `ENABLE_FEATURE_NETWORKING`. Works against the vendored Photon PUN2/Realtime/Chat SDKs in `Assets/Photon/`. Asmdef disabled (`.1asmdef`).

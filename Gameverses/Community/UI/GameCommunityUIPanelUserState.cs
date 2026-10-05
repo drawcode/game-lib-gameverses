@@ -7,7 +7,6 @@ using System.IO;
 // using Engine.Data.Json;
 using Engine.Events;
 using Engine.Networking;
-using UnityEngine.UI;
 
 public class GameCommunityUIPanelUserState : UIAppPanelBaseList {
 
@@ -21,7 +20,9 @@ public class GameCommunityUIPanelUserState : UIAppPanelBaseList {
 #if USE_UI_NGUI || USE_UI_NGUI_2_7 || USE_UI_NGUI_3
     public UIImageButton buttonFacebookLogin;
 #else
-    public Button buttonFacebookLogin;
+    // B10: agnostic UIRef handles. No prefab or scene object carries this panel in this title,
+    // so this is the code path only (UIUtil UIRef overloads), with no view to bind.
+    public Engine.UI.UIRef buttonFacebookLogin;
 #endif
 
     // logged
@@ -34,11 +35,12 @@ public class GameCommunityUIPanelUserState : UIAppPanelBaseList {
     public UILabel labelRank;
     public UITexture textureSpriteProfilePicture;
 #else
-    public GameObject labelUsername;
-    public GameObject labelFirstname;
-    public GameObject labelScore;
-    public GameObject labelRank;
-    public GameObject textureSpriteProfilePicture;
+    // B10: UIRef, code path only (see above).
+    public Engine.UI.UIRef labelUsername;
+    public Engine.UI.UIRef labelFirstname;
+    public Engine.UI.UIRef labelScore;
+    public Engine.UI.UIRef labelRank;
+    public Engine.UI.UIRef textureSpriteProfilePicture;
 #endif
     bool imageLoaded = false;
 

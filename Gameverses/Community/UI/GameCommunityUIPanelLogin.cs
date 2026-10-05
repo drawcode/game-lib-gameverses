@@ -7,8 +7,6 @@ using UnityEngine;
 using Engine.Events;
 using Engine.Networking;
 
-using UnityEngine.UI;
-
 public class GameCommunityUIPanelLogin : UIAppPanelBaseList {
 
     public static GameCommunityUIPanelLogin Instance;
@@ -30,12 +28,14 @@ public class GameCommunityUIPanelLogin : UIAppPanelBaseList {
     public UIImageButton buttonLoginPanelClose;
     public UIImageButton buttonLoginPanelNoThanks;
 #else
-    public GameObject labelTitle;
-    public GameObject labelStatus;
-    public Button buttonLoginPanelLike;
-    public Button buttonLoginPanelJoin;
-    public Button buttonLoginPanelClose;
-    public Button buttonLoginPanelNoThanks;
+    // B10: agnostic UIRef handles. No prefab or scene object carries this panel in this title,
+    // so this is the code path only (UIUtil UIRef overloads), with no view to bind.
+    public Engine.UI.UIRef labelTitle;
+    public Engine.UI.UIRef labelStatus;
+    public Engine.UI.UIRef buttonLoginPanelLike;
+    public Engine.UI.UIRef buttonLoginPanelJoin;
+    public Engine.UI.UIRef buttonLoginPanelClose;
+    public Engine.UI.UIRef buttonLoginPanelNoThanks;
 #endif
 
     public override void Awake() {
